@@ -224,7 +224,7 @@ public class CashRegister {
 
 			System.out.printf("Total with Tax (%.0f%%) %s %6.2f\n", tax * 100, "$", priceTax);
 
-			System.out.printf("Tendered amount%6s%2s", "$", " ");
+			System.out.printf("Tendered amount%6s%3s", "$", " ");
 
 			String userInput = input.next(); // Store the user's input.
 
@@ -262,7 +262,7 @@ public class CashRegister {
 	public static void promptRemainingBalance(double remainingBalance, Scanner input) {
 		while (remainingBalance < 0) {
 			System.out.printf("Remaining balance%4s%7.2f\n", "$", Math.abs(remainingBalance));
-			System.out.printf("Tendered amount%6s%2s", "$", " ");
+			System.out.printf("Tendered amount%6s%3s", "$", " ");
 
 			String userInput = input.next();
 			if (isDouble(userInput)) {
