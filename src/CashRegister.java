@@ -4,9 +4,9 @@ import java.util.Scanner;
 // Course: CIS357
 // Due date: 7/5/2022
 // Name: Jordan Anodjo
-// GitHub: theSlimyOne
+// GitHub: https://github.com/TheSlimyOne/cis357-hw1-Anodjo.git
 // Instructor: Il-Hyung Cho
-// Program description: ...
+// Program description: ...TODO
 
 public class CashRegister {
 
