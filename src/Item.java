@@ -1,89 +1,115 @@
+/**
+ * @author Jordan Anodjo
+ * The <code>Item</code> is a container that hold all the data about
+ * an item.
+ */
 public class Item {
+
+    /**
+     * Member variable -
+     * The code/identification for an <code>Item</code>.
+     */
     private int code;
+
+    /**
+     * Member variable -
+     * The name for an <code>Item</code>.
+     */
     private String name;
+
+    /**
+     * Member variable -
+     * The price for an <code>Item</code>.
+     */
     private float price;
+
+    /**
+     * Member variable -
+     * The amount of <code>Item</code> stored/ordered.
+     */
     private int amount;
 
     /**
-     * Constructor for Item.
+     * Constructor -
+     * Constructs an <code>Item</code> with all memeber variables filled.
      * 
-     * @param code the code/ID of the item.
-     * @param name the name of the item.
-     * @param price the price of the item.
-     * @param amount the amount of the item.
+     * @param code
+     * @param name
+     * @param price
+     * @param amount the quanity of the <code>Item</code>
      */
     public Item(int code, String name, float price, int amount) {
         this.code = code;
         this.name = name;
         this.price = price;
-        // Check if the amount is acceptable. 
+
+        // Check if the amount is acceptable.
         setAmount(amount);
     }
 
     /**
-     * Getter for the item's code.
+     * Member Function -
+     * Getter for the <code>Item</code> code.
      * 
-     * @return item's code.
+     * @return Item's code.
      */
     public int getCode() {
         return code;
     }
 
     /**
-     * Getter for the item's name.
+     * Member Function -
+     * Getter for the <code>Item</code> name.
      * 
-     * @return item's name.
+     * @return The <code>Item</code>'s name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Getter for the item's price.
+     * Member Function -
+     * Getter for the <code>Item</code> price.
      * 
-     * @return item's price.
+     * @return The <code>Item</code>'s price.
      */
     public float getPrice() {
         return price;
     }
 
     /**
-     * Getter for amount of this item.
+     * Member Function -
+     * Getter for amount of this <code>Item</code>.
      * 
-     * @return item's amount.
+     * @return The <code>Item</code> amount.
      */
     public int getAmount() {
         return amount;
     }
 
     /**
-     * Calculates the worth of all the amount of items together.
-     * 
-     * @return the price of the item times its amount.
-     */
-    public float calculateAmountTotal() {
-        return price * amount;
-    }
-
-    /**
-     * This function sets the amount for this item.
+     * Member Function -
+     * This function sets the amount for this <code>Item</code>'s.
      * The amount must be greater than or equal to 0.
-     * Cannot logically have a negative item so the function will throw an error.
+     * Cannot logically have a negative <code>Item</code>'s so the function will
+     * throw an error.
      * 
-     * @param amount what to set item amount to.
+     * @param amount what to set Item amount to.
      */
     public void setAmount(int amount) {
-        if (amount >= 0) {
+        if (amount >= 0)
             this.amount = amount;
-        } else {
+        else
             throw new IllegalArgumentException("Cannot have a negative amount of item.");
-        }
+
     }
 
     /**
-     * This function increments amount for this item.
+     * Member Function -
+     * This function increments amount for this <code>Item</code>'s.
      * The amount added must be greater than 0.
-     * Cannot logically add a negative item or add 0 of an item so the function will
+     * Cannot logically add a negative <code>Item</code>'s or add 0 of an
+     * <code>Item</code>'s so the function will
      * throw an error.
      * 
      * @param amount
@@ -97,7 +123,19 @@ public class Item {
     }
 
     /**
+     * Member Function -
+     * Calculates the full cost of <code>Item</code>.
+     * 
+     * @return The price of the <code>Item</code>'s times its amount.
+     */
+    public float calculateAmountTotal() {
+        return price * amount;
+    }
+
+    /**
      * {@inheritDoc}
+     * Member Function -
+     * Prints <code>Item</code> in the format of: amount, name, and total price.
      */
     @Override
     public String toString() {

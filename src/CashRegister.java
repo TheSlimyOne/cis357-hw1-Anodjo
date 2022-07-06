@@ -1,22 +1,29 @@
+/* 
+ * Homework 1: Sales Register Program
+ * Course: CIS357
+ * Due date: 7/5/2022
+ * Name: Jordan Anodjo
+ * GitHub: https://github.com/TheSlimyOne/cis357-hw1-Anodjo.git
+ * Instructor: Il-Hyung Cho
+ * Program description: 
+ * 		In this program, a user will interact with an emulated cash register.
+ * 		The user will be able to purchase items from a predetermined list.
+ * 		The cash register will respond appropriately from the user. 
+ * 		Always producing the correct results/response from the user.
+*/
+
 import java.util.Scanner;
 
-// Homework 1: Sales Register Program
-// Course: CIS357
-// Due date: 7/5/2022
-// Name: Jordan Anodjo
-// GitHub: https://github.com/TheSlimyOne/cis357-hw1-Anodjo.git
-// Instructor: Il-Hyung Cho
-// Program description: ...TODO
-
+/**
+ * The main class, the driver of program.
+ */
 public class CashRegister {
 
 	public static void main(String[] args) throws java.io.FileNotFoundException {
 
-		// Filling up the stock the store owns with a file
-		String path = "C:\\Users\\xcree\\OneDrive\\Desktop\\School Folder\\CIS 357\\cis357-hw1-Anodjo\\input.txt";
-
-		// Making that stock of items immutable
-		final Receptacle stock = Receptacle.fillReceptacleFromFile(path);
+		// Filling up the stock of the store with a file
+		Receptacle stock = new Receptacle(
+				"C:\\Users\\xcree\\OneDrive\\Desktop\\School Folder\\CIS 357\\cis357-hw1-Anodjo\\input.txt");
 
 		// Declaration of Scanner
 		Scanner input = new Scanner(System.in);
@@ -67,7 +74,7 @@ public class CashRegister {
 							// reference that item so user can increase amount they have.
 							item = shoppingCart.getItem(shoppingCart.getIndex(item));
 
-						System.out.printf("%20s%s\n", "Item name: ", shoppingCart.getLastItem().getName());
+						System.out.printf("%20s%s\n", "Item name: ", item.getName());
 
 						// Prompt the amount of items the user wants to purchase.
 						promptQuantity(item, shoppingCart, input);
@@ -224,7 +231,9 @@ public class CashRegister {
 
 			System.out.printf("Total with Tax (%.0f%%) %s %6.2f\n", tax * 100, "$", priceTax);
 
-			System.out.printf("Tendered amount%6s%3s", "$", " ");
+			// Format the string the user will be inputting on.
+			correctDecimal(priceTax);
+
 
 			String userInput = input.next(); // Store the user's input.
 
@@ -251,6 +260,14 @@ public class CashRegister {
 		return subTotal;
 	}
 
+	public static void correctDecimal(double price){
+		
+		if (price > 9.99)
+			System.out.printf("Tendered amount%6s%2s", "$", " ");
+		else
+			System.out.printf("Tendered amount%6s%3s", "$", " ");
+	}
+
 	/**
 	 * Description: Starts a session in where the user must select an apporiate
 	 * response. In this session the user must continue to pay till the remaining
@@ -262,7 +279,7 @@ public class CashRegister {
 	public static void promptRemainingBalance(double remainingBalance, Scanner input) {
 		while (remainingBalance < 0) {
 			System.out.printf("Remaining balance%4s%7.2f\n", "$", Math.abs(remainingBalance));
-			System.out.printf("Tendered amount%6s%3s", "$", " ");
+			correctDecimal(Math.abs(remainingBalance));
 
 			String userInput = input.next();
 			if (isDouble(userInput)) {
